@@ -1,0 +1,7 @@
+.footer {
+ background: #F4B100;
+ height: 100px;
+ position: relative;
+ color: white;
+ /*overflow: auto;*/
+}

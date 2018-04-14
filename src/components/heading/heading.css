@@ -1,0 +1,16 @@
+heading {
+  background-color: lightgrey;
+  padding: 20px;
+}
+
+statusBoolean {
+  color: maroon;
+  background-color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+scoreUpdate {
+  background-color: white;
+  font-size: 12px;
+}
