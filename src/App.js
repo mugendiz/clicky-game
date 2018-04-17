@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { container } from 'reactstrap';
-import { footer } from 'reactstrap';
+import { Container } from 'reactstrap';
+import { Footer } from 'reactstrap';
 
 import Heading from "./components/heading/heading";
-import Footer from "./components/footer/footer";
-import pics from "./pics.json";
+import ImageCard from "./components/image/ImageCard";
 import "./App.css";
 import logo from './logo.svg';
+import images from './images.json'
 
 class App extends Component {
   // Setting the component's initial state
   state = {
-    pics: pics,
+    images: images,
     clicked: [],
     statusBoolean: false,
     scoreUpdate: 0
@@ -26,56 +26,53 @@ class App extends Component {
     if (hasBeenClicked) {
      this.setState({ clicked:[], highest:Math.max(this.state.highest, this.state.clicked.length)})
     } else {
-      const picsCopy = pics.slice();
+      const imagesCopy = images.slice();
 
-      const picsShuffle = [];
+      const imagesShuffle = [];
 
-      while (picsCopy.length > 0 ) {
-        const index = Math.floor(Math.random() * picsCopy.length)
+      while (imagesCopy.length > 0 ) {
+        const index = Math.floor(Math.random() * imagesCopy.length)
 
-        const pics = picsCopy[index];
+        const images = imagesCopy[index];
 
-        picsShuffle.push(pics)
+        imagesShuffle.push(images)
 
-        picsCopy.splice(index, 1)
+        imagesCopy.splice(index, 1)
       }
       const clicked = this.state.clicked.slice()
       clicked.push(id)
-      this.setState({pics:picsShuffle, clicked})
+      this.setState({images:imagesShuffle, clicked})
     }
+  };
 
-    }
     // Render, after running map() on the pics
 
     render() {
         return (
-          <div>
+          <div className='headerList'>
           <Heading />
-            <div>
-              Current Score: {this.state.clicked.length}
-            </div>
-            <div>
-             You guessed {this.state.statusBoolean}
-            </div>
-            <container>
-              {this.state.pics.map(pics => {
-                  return  <picsCard
-                      removepics={this.switchpics}
-                      id={pics.id}
-                      key={pics.id}
-                      name={pics.name}
-                      image={pics.image}
-                      occupation={pics.occupation}
-                      location={pics.location}
+          Current Score: {this.state.clicked.length}
+          You guessed {this.state.statusBoolean}
+
+            <Container />
+              {this.state.images.map(pics => {
+                  return  <ImageCard
+                      removepics={this.switchimages}
+                      id={images.id}
+                      key={images.id}
+                      name={images.name}
+                      image={images.image}
+                      occupation={images.occupation}
+                      location={images.location}
                       handleIncrement={this.handleIncrement.bind(this)}
                     />
                   })
                 };
-            </container>
           </div>
-        );
+          );
+        }
       }
-  }
+
 
 
 export default App;
